@@ -168,7 +168,7 @@ fun buildIvyRepositoryTask(
                     includeEmptyDirs = false
                 }
 
-                ClassFileTransformer.transformFilesInDir(file(File(artifactsDirectory, "lib")))
+                ClassFileTransformer.transformFilesInDir(file(File(artifactsDirectory, "lib")), logger)
 
                 writeIvyXml(
                     organization,
@@ -186,7 +186,7 @@ fun buildIvyRepositoryTask(
                     file(File(artifactsDirectory, "plugins"))
                         .listFiles { file: File -> file.isDirectory }
                         .forEach {
-                            ClassFileTransformer.transformFilesInDir(file(File(it, "lib")))
+                            ClassFileTransformer.transformFilesInDir(file(File(it, "lib")), logger)
 
                             writeIvyXml(
                                 organization,
@@ -373,19 +373,21 @@ internal object ClassFileTransformer {
 
     private const val applicationClass = "com/intellij/openapi/application/impl/ApplicationImpl"
 
-    fun transformFilesInDir(dir: File) {
+    fun transformFilesInDir(dir: File, logger: Logger) {
         if (dir.isDirectory) {
             dir.listFiles { file -> file.isFile && file.extension == "jar" }
-                .forEach(this@ClassFileTransformer::transformJarFile)
+                .forEach { transformJarFile(it, logger) }
         }
     }
 
     @OptIn(ExperimentalPathApi::class)
-    private fun transformJarFile(jarFile: File) {
+    private fun transformJarFile(jarFile: File, logger: Logger) {
         val env = hashMapOf("create" to "false")
         FileSystemProvider.installedProviders().filter { it.scheme == "jar" }.mapNotNull {
             it.newFileSystem(jarFile.toPath(), env)
         }.first().use {
+            // pass the logger as a parameter to workaround the error at this point:
+            // "Back-end (JVM) Internal error: Failed to generate expression: KtNameReferenceExpression"
             logger.info("Transforming classes from $jarFile")
             val root = it.getPath("/")
             Files.walkFileTree(root, object : SimpleFileVisitor<java.nio.file.Path>() {

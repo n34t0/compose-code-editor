@@ -1,4 +1,5 @@
 // Copyright 2000-2020 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+// Modified by Alex Hosh (n34to0@gmail.com) 2021.
 package com.intellij.openapi.progress.util;
 
 import com.intellij.ide.IpwEventQueue;

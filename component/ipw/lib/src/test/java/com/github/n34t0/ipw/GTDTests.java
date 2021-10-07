@@ -1,13 +1,13 @@
-package ipw;
+package com.github.n34t0.ipw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static ipw.WrapperExtension.assertGotoDeclaration;
-import static ipw.WrapperExtension.assertLocalGotoDeclaration;
-import static ipw.WrapperExtension.ipw;
-import static ipw.WrapperExtension.tempDir;
+import static com.github.n34t0.ipw.WrapperExtension.assertGotoDeclaration;
+import static com.github.n34t0.ipw.WrapperExtension.assertLocalGotoDeclaration;
+import static com.github.n34t0.ipw.WrapperExtension.ipw;
+import static com.github.n34t0.ipw.WrapperExtension.tempDir;
 
 @ExtendWith(WrapperExtension.class)
 class GTDTests {

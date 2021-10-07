@@ -1,4 +1,4 @@
-package ipw;
+package com.github.n34t0.ipw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -12,10 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
-import static ipw.WrapperExtension.assertCodeCompletion;
-import static ipw.WrapperExtension.ipw;
-import static ipw.WrapperExtension.replaceInFile;
-import static ipw.WrapperExtension.tempDir;
+import static com.github.n34t0.ipw.WrapperExtension.assertCodeCompletion;
+import static com.github.n34t0.ipw.WrapperExtension.ipw;
+import static com.github.n34t0.ipw.WrapperExtension.replaceInFile;
+import static com.github.n34t0.ipw.WrapperExtension.tempDir;
 
 @ExtendWith(WrapperExtension.class)
 @TestMethodOrder(OrderAnnotation.class)

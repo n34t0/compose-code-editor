@@ -1,4 +1,4 @@
-package ipw;
+package com.github.n34t0.ipw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
@@ -7,9 +7,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 
-import static ipw.WrapperExtension.assertCodeCompletion;
-import static ipw.WrapperExtension.ipw;
-import static ipw.WrapperExtension.tempDir;
+import static com.github.n34t0.ipw.WrapperExtension.assertCodeCompletion;
+import static com.github.n34t0.ipw.WrapperExtension.ipw;
+import static com.github.n34t0.ipw.WrapperExtension.tempDir;
 
 @ExtendWith(WrapperExtension.class)
 class MultipleProjectsTests {

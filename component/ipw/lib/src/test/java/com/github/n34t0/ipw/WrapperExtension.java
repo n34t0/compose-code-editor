@@ -1,9 +1,5 @@
-package ipw;
+package com.github.n34t0.ipw;
 
-import com.github.n34t0.ipw.CodeCompletionElement;
-import com.github.n34t0.ipw.GotoDeclarationData;
-import com.github.n34t0.ipw.IntellijPlatformWrapper;
-import com.github.n34t0.ipw.IpwProject;
 import com.github.n34t0.ipw.impl.Wrapper;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.util.io.FileUtil;

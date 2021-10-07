@@ -56,7 +56,7 @@ import java.util.concurrent.TimeoutException;
 public class ApplicationServiceImpl extends IpwService implements ApplicationService {
     private static final boolean IS_STRESS_TEST = true;
     private static final boolean IS_UNIT_TEST = true;
-    private static final String CCW_JDK = "ipw.jdk";
+    private static final String IPW_JDK = "ipw.jdk";
 
     private Sdk mySdk;
 
@@ -124,7 +124,7 @@ public class ApplicationServiceImpl extends IpwService implements ApplicationSer
     }
 
     private void registerSdk() {
-        String jdkPath = System.getProperty(CCW_JDK);
+        String jdkPath = System.getProperty(IPW_JDK);
         mySdk = jdkPath != null
             ? ExternalSystemJdkProvider.getInstance().createJdk(null, jdkPath)
             : ExternalSystemJdkUtil.resolveJdkName(null, ExternalSystemJdkUtil.USE_JAVA_HOME);

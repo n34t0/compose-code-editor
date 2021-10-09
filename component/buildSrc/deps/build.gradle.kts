@@ -430,7 +430,7 @@ internal object ClassFileTransformer {
 
 internal class EdtInvocationMapper {
 
-    private val adapterClass = "com/github/n34t0/ipw/impl/edt/EdtAdapter"
+    private val adapterClass = "com/github/n34t0/platform/impl/edt/EdtAdapter"
 
     private val classMethodMapping = mapOf(
         "javax/swing/SwingUtilities" to mapOf(

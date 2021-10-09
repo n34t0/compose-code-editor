@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-include(":ipw:api")
-include(":ipw:lib")
+include(":platform:api")
+include(":platform:lib")
 include(":editor")

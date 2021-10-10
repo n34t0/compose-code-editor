@@ -1,8 +1,10 @@
 package com.github.n34t0.compose.codeEditor.diagnostics
 
-import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import com.github.n34t0.compose.codeEditor.AppTheme
 import com.github.n34t0.compose.codeEditor.editor.draw.DrawState
 import com.github.n34t0.compose.codeEditor.editor.draw.LineSegment
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
@@ -10,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 
 @Stable
 internal class DiagnosticState(
-    diagnostics: List<DiagnosticElement>,
     scope: CoroutineScope,
     textState: TextState,
     private val drawState: DrawState
@@ -18,17 +19,21 @@ internal class DiagnosticState(
 
     val tooltipState = DiagnosticTooltipState(scope)
 
-    val list = diagnostics.map {
-        DiagnosticElementState(
-            message = it.message,
-            severity = it.severity,
-            startLine = it.startLine,
-            startCharacter = it.startCharacter,
-            endLine = it.endLine,
-            endCharacter = it.endCharacter,
-            textState = textState
-        )
-    }.sortedBy { it.severity }
+    val diagnostics = mutableStateListOf<DiagnosticElement>()
+
+    val list by derivedStateOf {
+        diagnostics.map {
+            DiagnosticElementState(
+                message = it.message,
+                severity = it.severity,
+                startLine = it.startLine,
+                startCharacter = it.startCharacter,
+                endLine = it.endLine,
+                endCharacter = it.endCharacter,
+                textState = textState
+            )
+        }.sortedBy { it.severity }
+    }
 
     private val errorDrawer = drawState.createWavedLineDrawer(AppTheme.colors.severityError, zIndex = 19)
     private val warningDrawer = drawState.createBackgroundDrawer(AppTheme.colors.severityWarning, zIndex = 0)
@@ -47,6 +52,11 @@ internal class DiagnosticState(
             errorDrawer,
             derivedStateOf { mapToLineSegments(Severity.ERROR) }
         )
+    }
+
+    fun updateList(list: List<DiagnosticElement>) {
+        diagnostics.clear()
+        diagnostics.addAll(list)
     }
 
     private fun mapToLineSegments(severity: Severity): List<LineSegment> {

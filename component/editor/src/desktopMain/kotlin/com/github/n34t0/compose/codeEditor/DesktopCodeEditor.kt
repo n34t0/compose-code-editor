@@ -31,14 +31,7 @@ internal actual fun CodeEditorImpl(
         )
     }
 
-    editorState.diagnosticState = rememberSaveable(diagnostics) {
-        DiagnosticState(
-            diagnostics = diagnostics,
-            scope = scope,
-            textState = editorState.textState,
-            drawState = editorState.drawState
-        )
-    }
+    editorState.setDiagnostics(diagnostics)
 
     MaterialTheme(
         colors = AppTheme.colors.material,

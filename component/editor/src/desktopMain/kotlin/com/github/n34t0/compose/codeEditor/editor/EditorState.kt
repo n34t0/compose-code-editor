@@ -15,6 +15,7 @@ import androidx.compose.ui.input.pointer.isPrimaryPressed
 import androidx.compose.ui.unit.IntOffset
 import com.github.n34t0.compose.codeEditor.ProjectFile
 import com.github.n34t0.compose.codeEditor.codecompletion.CodeCompletionState
+import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticElement
 import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticState
 import com.github.n34t0.compose.codeEditor.editor.draw.DrawState
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
@@ -42,7 +43,7 @@ internal class EditorState(
     val cursorPosition = OffsetState()
     val ccState = CodeCompletionState(scope, textState::paste)
     val drawState = DrawState(textState)
-    lateinit var diagnosticState: DiagnosticState
+    val diagnosticState = DiagnosticState(scope, textState, drawState)
     val searchState = SearchState(textState, drawState)
     val tooltipState = EditorTooltipState(textState, layoutOffset)
     val gtdState = GtdState(
@@ -80,6 +81,8 @@ internal class EditorState(
         if (textState.highlightedReferenceRanges.isNotEmpty()) PointerIcon.Hand
         else PointerIcon.Text
     }
+
+    fun setDiagnostics(list: List<DiagnosticElement>) = diagnosticState.updateList(list)
 
     fun onScroll(offset: Float) {
         val intOffset = offset.roundToInt()

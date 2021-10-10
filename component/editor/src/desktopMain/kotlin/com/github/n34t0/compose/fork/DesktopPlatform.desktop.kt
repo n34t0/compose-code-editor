@@ -16,7 +16,7 @@
 
 package com.github.n34t0.compose.fork
 
-enum class DesktopPlatform {
+internal enum class DesktopPlatform {
     Linux,
     Windows,
     MacOS,

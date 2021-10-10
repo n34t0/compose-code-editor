@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.StampedPathEffectStyle
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 
-class WavedLineDrawer(
+internal class WavedLineDrawer(
     private val lineColor: Color,
     zIndex: Int
 ) : HighlightDrawer(zIndex) {

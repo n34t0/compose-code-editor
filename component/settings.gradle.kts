@@ -8,3 +8,4 @@ pluginManagement {
 include(":platform:api")
 include(":platform:lib")
 include(":editor")
+include(":demo")

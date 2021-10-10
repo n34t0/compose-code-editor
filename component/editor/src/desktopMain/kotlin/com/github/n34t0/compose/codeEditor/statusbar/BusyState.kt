@@ -8,7 +8,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 @Stable
-class BusyState {
+internal class BusyState {
     private var busyCount = 0
     private var lock = Mutex()
 

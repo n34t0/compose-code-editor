@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent.VK_META
 import java.awt.event.KeyEvent.VK_SHIFT
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onNavigationKey(
+internal fun KeyEventHandlerImpl.onNavigationKey(
     up: () -> Boolean,
     down: () -> Boolean,
     left: (() -> Boolean)? = null,
@@ -50,7 +50,7 @@ fun KeyEventHandlerImpl.onNavigationKey(
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onEnter(
+internal fun KeyEventHandlerImpl.onEnter(
     consume: () -> Boolean,
     action: () -> Boolean,
     hide: () -> Unit
@@ -76,7 +76,7 @@ fun KeyEventHandlerImpl.onEnter(
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onTab(hide: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onTab(hide: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Tab, ANY_MODIFIERS) {
         hide()
         false
@@ -84,7 +84,7 @@ fun KeyEventHandlerImpl.onTab(hide: () -> Unit): KeyEventHandlerImpl {
     return this
 }
 
-fun KeyEventHandlerImpl.onBackspace(action: () -> Boolean): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onBackspace(action: () -> Boolean): KeyEventHandlerImpl {
     addKeyTypeAction(keyModifiers = intArrayOf(ANY_MODIFIERS)) {
         if (it.nativeKeyEvent.keyChar == '\b') {
             return@addKeyTypeAction action()
@@ -94,7 +94,7 @@ fun KeyEventHandlerImpl.onBackspace(action: () -> Boolean): KeyEventHandlerImpl 
     return this
 }
 
-fun KeyEventHandlerImpl.onCharacter(action: (Char) -> Boolean): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCharacter(action: (Char) -> Boolean): KeyEventHandlerImpl {
     addKeyDownAction(keyModifiers = intArrayOf(ANY_MODIFIERS)) {
         action(it.nativeKeyEvent.keyChar)
     }
@@ -102,7 +102,7 @@ fun KeyEventHandlerImpl.onCharacter(action: (Char) -> Boolean): KeyEventHandlerI
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onEscape(hide: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onEscape(hide: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Escape) {
         hide()
         true
@@ -111,7 +111,7 @@ fun KeyEventHandlerImpl.onEscape(hide: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onAnyOtherKeyExceptCharactersAndBackspace(
+internal fun KeyEventHandlerImpl.onAnyOtherKeyExceptCharactersAndBackspace(
     noSuggestions: () -> Boolean,
     hide: () -> Unit
 ): KeyEventHandlerImpl {

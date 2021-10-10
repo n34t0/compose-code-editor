@@ -2,7 +2,7 @@
 
 package com.github.n34t0.compose.codeEditor.codecompletion
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.VerticalScrollbar
@@ -38,20 +38,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.github.n34t0.compose.codeEditor.LogMarkers
 import com.github.n34t0.compose.codeEditor.editor.OffsetState
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 private val popupPositionCorrection = IntOffset(-4, 0)
 
 @Composable
-fun CodeCompletionPopup(
+internal fun CodeCompletionPopup(
     ccState: CodeCompletionState,
     offset: OffsetState
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletionPopup" }
     if (ccState.isVisible) {
         ccState.ccListState.scope = rememberCoroutineScope()
 
@@ -63,11 +58,8 @@ fun CodeCompletionPopup(
                 .widthIn(min = 150.dp, max = 300.dp)
                 .padding(vertical = 2.dp)
         ) {
-            logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletionPopup Surface" }
-
             Column {
                 CodeCompletionList(ccState.ccListState)
-
                 Footer(ccState)
             }
         }
@@ -80,8 +72,6 @@ private fun CodeCompletionList(
 ) = Box(
     Modifier.heightIn(max = 208.dp)
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletionList" }
-
     var scrollWidth = 0
 
     if (ccListState.isMaxPageSizeExceeded()) {
@@ -99,7 +89,6 @@ private fun CodeCompletionList(
         modifier = Modifier.padding(start = 2.dp, end = (2 + scrollWidth).dp),
         state = ccListState.lazyListState
     ) {
-        logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletionList LazyColumn" }
         items(ccListState.list, key = { it.id }) { item ->
             CodeCompletionElementRow(item)
         }
@@ -119,8 +108,6 @@ private fun CodeCompletionElementRow(
         )
         .padding(top = 2.dp, bottom = 3.dp, start = 2.dp, end = 2.dp)
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletionElement id: ${element.id}" }
-
     CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.body1) {
         Text(
             element.element.name ?: "",
@@ -154,7 +141,6 @@ private fun CodeCompletionElementRow(
 private fun Footer(
     ccState: CodeCompletionState
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition CodeCompletion Footer" }
     if (ccState.isLoading || ccState.ccListState.noSuggestions) {
         Box(
             modifier = Modifier

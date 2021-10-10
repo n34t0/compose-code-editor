@@ -11,7 +11,7 @@ import com.github.n34t0.compose.codeEditor.editor.text.TextState
 import java.util.TreeMap
 
 @Stable
-class DrawState(
+internal class DrawState(
     private val textState: TextState
 ) {
     private val lineHeight = derivedStateOf { textState.lineHeight }
@@ -73,7 +73,7 @@ class DrawState(
         )
 }
 
-fun Modifier.drawHighlights(
+internal fun Modifier.drawHighlights(
     drawState: DrawState,
     scrollState: ScrollState
 ) = drawWithCache {

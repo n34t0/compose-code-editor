@@ -7,18 +7,12 @@ import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.window.PopupPositionProvider
-import com.github.n34t0.compose.codeEditor.LogMarkers
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun EditorTooltip(
+internal fun EditorTooltip(
     tooltipState: EditorTooltipState
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition EditorTooltip" }
-
     if (tooltipState.isVisible) {
         tooltipState.caretRect?.let {
             val positionProvider = EditorTooltipPositionProvider(it, 2)

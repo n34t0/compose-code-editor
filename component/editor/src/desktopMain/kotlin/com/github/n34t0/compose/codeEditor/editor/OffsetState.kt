@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.IntOffset
 
 @Stable
-class OffsetState {
+internal class OffsetState {
     companion object {
         val Unspecified = IntOffset(-1, -1)
     }

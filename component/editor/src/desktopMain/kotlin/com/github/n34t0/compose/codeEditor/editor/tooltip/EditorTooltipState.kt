@@ -12,7 +12,7 @@ import com.github.n34t0.compose.codeEditor.editor.OffsetState
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
 
 @Stable
-class EditorTooltipState(
+internal class EditorTooltipState(
     private val textState: TextState,
     private val layoutOffset: OffsetState
 ) {

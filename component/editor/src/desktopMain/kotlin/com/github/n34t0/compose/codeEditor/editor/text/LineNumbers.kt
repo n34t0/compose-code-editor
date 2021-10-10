@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.editor.text
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -24,19 +24,13 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.github.n34t0.compose.codeEditor.LogMarkers
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 @Composable
-fun LineNumbers(
+internal fun LineNumbers(
     textFieldState: EditorTextFieldState,
     scrollState: ScrollState,
     onWidthChange: (Int) -> Unit = {}
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition LineNumbers" }
-
     val lineNumbersState = remember { LineNumbersState() }
 
     with(LocalDensity.current) {
@@ -44,8 +38,6 @@ fun LineNumbers(
             color = AppTheme.colors.backgroundMedium,
         ) {
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                logger.trace(LogMarkers.recomposition) { "Recomposition LineNumbers Text" }
-
                 Text(
                     text = lineNumbersState.getLineNumbersText(textFieldState.lineCount),
                     modifier = Modifier

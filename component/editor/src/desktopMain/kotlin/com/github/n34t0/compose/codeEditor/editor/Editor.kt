@@ -2,13 +2,13 @@
 
 package com.github.n34t0.compose.codeEditor.editor
 
-import androidx.compose.foundation.ExperimentalDesktopApi
 import androidx.compose.foundation.gestures.forEachGesture
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.focus.focusRequester
@@ -19,27 +19,22 @@ import androidx.compose.ui.input.pointer.pointerIcon
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.pointerMoveFilter
 import androidx.compose.ui.unit.round
-import com.github.n34t0.compose.codeEditor.LogMarkers
 import com.github.n34t0.compose.codeEditor.codecompletion.CodeCompletionPopup
 import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticTooltip
 import com.github.n34t0.compose.codeEditor.editor.draw.drawHighlights
 import com.github.n34t0.compose.codeEditor.editor.text.EditorTextField
 import com.github.n34t0.compose.codeEditor.editor.tooltip.EditorTooltip
-import mu.KotlinLogging
 
-private val logger = KotlinLogging.logger {}
-
-@OptIn(ExperimentalDesktopApi::class, androidx.compose.ui.ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun Editor(
+internal fun Editor(
     editorState: EditorState,
+    onTextChange: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) = Surface(
     modifier = modifier,
     color = MaterialTheme.colors.background
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition Editor" }
-
     Box {
         EditorTextField(
             textState = editorState.textState,
@@ -91,6 +86,10 @@ fun Editor(
 
         LaunchedEffect(Unit) {
             editorState.focusRequester.requestFocus()
+        }
+
+        LaunchedEffect(editorState.textState.text) {
+            onTextChange(editorState.textState.text)
         }
     }
 }

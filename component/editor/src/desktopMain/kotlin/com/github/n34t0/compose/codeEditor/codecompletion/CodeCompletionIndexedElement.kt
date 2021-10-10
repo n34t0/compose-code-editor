@@ -3,9 +3,9 @@ package com.github.n34t0.compose.codeEditor.codecompletion
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.github.n34t0.ipw.CodeCompletionElement
+import com.github.n34t0.platform.CodeCompletionElement
 
-class CodeCompletionIndexedElement(
+internal class CodeCompletionIndexedElement(
     val id: Int,
     val element: CodeCompletionElement,
     val onClick: () -> Unit = {},

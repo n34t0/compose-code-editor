@@ -5,24 +5,21 @@ import androidx.compose.ui.text.TextRange
 import com.github.n34t0.compose.codeEditor.ProjectFile
 import com.github.n34t0.compose.codeEditor.editor.tooltip.EditorTooltipState
 import com.github.n34t0.compose.codeEditor.statusbar.BusyState
-import com.github.n34t0.ipw.GotoDeclarationData
+import com.github.n34t0.platform.GotoDeclarationData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import mu.KotlinLogging
 import java.nio.file.Path
 
-private val logger = KotlinLogging.logger {}
-
 @Stable
-class GtdState(
+internal class GtdState(
     private val scope: CoroutineScope,
     private val projectFile: ProjectFile,
     private val localGoto: (Int) -> Unit,
-    private val goto: (String, String, Int) -> Unit,
+    private val outerGoto: (String, String, Int) -> Unit,
     private val tooltipState: EditorTooltipState,
     private val busyState: BusyState
 ) {
@@ -92,20 +89,19 @@ class GtdState(
 
         val targets = data.targets
         if (targets.size > 1) {
-            logger.warn {
+            /*logger.warn {
                 "GotoDeclaration: more than one target. " +
                     "File: ${projectFile.absoluteFilePath}, " +
                     "range: (${data.initialElementStartOffset}, ${data.initialElementEndOffset}), " +
                     "targets: ${targets}"
-            }
+            }*/
         }
         val target = targets.first()
-        logger.trace { "gotoDeclaration: target = ${target}" }
         if (target.path == projectFile.relativeFilePath) {
             localGoto(target.offset)
         } else {
             if (!Path.of(target.path).isAbsolute) {
-                goto(projectFile.projectDir!!, target.path, target.offset)
+                outerGoto(projectFile.projectDir!!, target.path, target.offset)
             } else {
                 // todo open other files in read only mode
             }

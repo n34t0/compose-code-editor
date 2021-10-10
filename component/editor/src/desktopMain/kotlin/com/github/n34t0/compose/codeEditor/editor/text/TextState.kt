@@ -13,13 +13,10 @@ import androidx.compose.ui.text.substring
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.round
 import androidx.compose.ui.unit.toOffset
-import com.github.n34t0.ipw.CodeCompletionElement
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
+import com.github.n34t0.platform.CodeCompletionElement
 
 @Stable
-class TextState(
+internal class TextState(
     text: String
 ) {
     companion object {

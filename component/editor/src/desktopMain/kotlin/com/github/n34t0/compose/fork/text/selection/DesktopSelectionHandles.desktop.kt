@@ -22,7 +22,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.text.style.ResolvedTextDirection
 
 @Composable
-fun SelectionHandle(
+internal actual fun SelectionHandle(
     position: Offset,
     isStartHandle: Boolean,
     direction: ResolvedTextDirection,

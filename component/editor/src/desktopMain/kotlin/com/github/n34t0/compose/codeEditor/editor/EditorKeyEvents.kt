@@ -11,7 +11,7 @@ import com.github.n34t0.compose.codeEditor.keyevent.KeyModifier.META
 import com.github.n34t0.compose.codeEditor.keyevent.KeyModifier.NO_MODIFIERS
 import com.github.n34t0.compose.codeEditor.keyevent.KeyModifier.SHIFT
 
-fun KeyEventHandlerImpl.onAnyKey(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onAnyKey(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(keyModifiers = intArrayOf(ANY_MODIFIERS)) {
         action()
         false
@@ -20,7 +20,7 @@ fun KeyEventHandlerImpl.onAnyKey(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlDown(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlDown(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.CtrlLeft, CTRL) {
         action()
         false
@@ -33,7 +33,7 @@ fun KeyEventHandlerImpl.onCtrlDown(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlUp(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlUp(action: () -> Unit): KeyEventHandlerImpl {
     addKeyUpAction(Key.CtrlLeft) {
         action()
         false
@@ -46,7 +46,7 @@ fun KeyEventHandlerImpl.onCtrlUp(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onMetaDown(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onMetaDown(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.MetaLeft, META) {
         action()
         false
@@ -59,7 +59,7 @@ fun KeyEventHandlerImpl.onMetaDown(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onMetaUp(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onMetaUp(action: () -> Unit): KeyEventHandlerImpl {
     addKeyUpAction(Key.MetaLeft) {
         action()
         false
@@ -72,7 +72,7 @@ fun KeyEventHandlerImpl.onMetaUp(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlSpace(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlSpace(action: () -> Unit): KeyEventHandlerImpl {
     addKeyUpAction(Key.Spacebar, CTRL) {
         action()
         true
@@ -83,7 +83,7 @@ fun KeyEventHandlerImpl.onCtrlSpace(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlF(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlF(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.F, CTRL) {
         action()
         false
@@ -93,7 +93,7 @@ fun KeyEventHandlerImpl.onCtrlF(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlB(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlB(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.B, CTRL) {
         action()
         false
@@ -103,7 +103,7 @@ fun KeyEventHandlerImpl.onCtrlB(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onMetaB(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onMetaB(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.B, META) {
         action()
         false
@@ -113,7 +113,7 @@ fun KeyEventHandlerImpl.onMetaB(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onTab(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onTab(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Tab) {
         action()
         true
@@ -123,7 +123,7 @@ fun KeyEventHandlerImpl.onTab(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onShiftTab(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onShiftTab(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Tab, SHIFT) {
         action()
         true
@@ -133,7 +133,7 @@ fun KeyEventHandlerImpl.onShiftTab(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Enter) {
         action()
         true
@@ -143,14 +143,14 @@ fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onHome(action: () -> Boolean): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onHome(action: () -> Boolean): KeyEventHandlerImpl {
     addKeyDownAction(Key.MoveHome) {
         action()
     }
     return this
 }
 
-fun KeyEventHandlerImpl.onPairChars(
+internal fun KeyEventHandlerImpl.onPairChars(
     openChar: Char,
     closeChar: Char,
     insertPair: (Char) -> Unit,
@@ -177,7 +177,7 @@ fun KeyEventHandlerImpl.onPairChars(
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onBackspace(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onBackspace(action: () -> Unit): KeyEventHandlerImpl {
     addKeyUpAction(Key.Backspace) {
         action()
         true
@@ -185,7 +185,7 @@ fun KeyEventHandlerImpl.onBackspace(action: () -> Unit): KeyEventHandlerImpl {
     return this
 }
 
-fun KeyEventHandlerImpl.onCharacter(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCharacter(action: () -> Unit): KeyEventHandlerImpl {
     addKeyUpAction(keyModifiers = intArrayOf(NO_MODIFIERS, SHIFT)) {
         val keyChar = it.nativeKeyEvent.keyChar
         // todo: add support for other operators like ::

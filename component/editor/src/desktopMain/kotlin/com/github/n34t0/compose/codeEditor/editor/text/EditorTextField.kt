@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.editor.text
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,22 +12,16 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
-import com.github.n34t0.compose.codeEditor.LogMarkers
-import com.github.n34t0.compose.fork.text.CcwTextField
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
+import com.github.n34t0.compose.fork.text.CoreTextField
 
 @Composable
-fun EditorTextField(
+internal fun EditorTextField(
     textState: TextState,
     scrollState: ScrollState,
     onScroll: (Float) -> Unit = {},
     onLineNumbersWidthChange: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition EditorTextField" }
-
     val textFieldState = remember { EditorTextFieldState(textState) }
 
     Row {
@@ -51,10 +45,8 @@ private fun TextField(
     onScroll: (Float) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition TextField" }
-
     CompositionLocalProvider(LocalTextSelectionColors provides AppTheme.colors.selectionColors) {
-        CcwTextField(
+        CoreTextField(
             value = textFieldState.textFieldValue,
             onValueChange = textFieldState::onTextFieldValueChange,
             onTextLayout = textFieldState::onTextLayoutChange,

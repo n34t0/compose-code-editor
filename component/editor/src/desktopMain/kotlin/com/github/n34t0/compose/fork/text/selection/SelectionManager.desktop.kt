@@ -16,17 +16,17 @@
 
 package com.github.n34t0.compose.fork.text.selection
 
+import com.github.n34t0.compose.fork.DesktopPlatform
+import com.github.n34t0.compose.fork.text.MappedKeys
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.isCtrlPressed
 import androidx.compose.ui.input.key.isMetaPressed
 import androidx.compose.ui.input.key.key
-import com.github.n34t0.compose.fork.DesktopPlatform
-import com.github.n34t0.compose.fork.text.MappedKeys
 
 // this doesn't sounds very sustainable
 // it would end up being a function for any conceptual keyevent (selectall, cut, copy, paste)
 // TODO(b/1564937)
-fun isCopyKeyEvent(keyEvent: KeyEvent) =
+internal actual fun isCopyKeyEvent(keyEvent: KeyEvent) =
     keyEvent.key == MappedKeys.C && when (DesktopPlatform.Current) {
         DesktopPlatform.MacOS -> keyEvent.isMetaPressed
         else -> keyEvent.isCtrlPressed

@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.editor.text
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -15,10 +15,9 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.withStyle
 
 @Stable
-class EditorTextFieldState(
+internal class EditorTextFieldState(
     private val textState: TextState
 ) {
-
     private val annotatedString by derivedStateOf { styleString(textState.text, textState.highlightedReferenceRanges) }
 
     private var _selection by mutableStateOf(TextRange.Zero)

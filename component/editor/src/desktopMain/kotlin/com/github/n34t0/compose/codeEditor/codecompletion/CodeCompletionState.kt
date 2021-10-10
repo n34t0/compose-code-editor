@@ -9,7 +9,7 @@ import com.github.n34t0.compose.codeEditor.codecompletion.CodeCompletionListStat
 import com.github.n34t0.compose.codeEditor.editor.text.Prefix
 import com.github.n34t0.compose.codeEditor.keyevent.KeyEventHandler
 import com.github.n34t0.compose.codeEditor.keyevent.KeyEventHandlerImpl
-import com.github.n34t0.ipw.CodeCompletionElement
+import com.github.n34t0.platform.CodeCompletionElement
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @Stable
-class CodeCompletionState(
+internal class CodeCompletionState(
     private val scope: CoroutineScope,
     private val paste: (Int, CodeCompletionElement) -> Unit
 ) {

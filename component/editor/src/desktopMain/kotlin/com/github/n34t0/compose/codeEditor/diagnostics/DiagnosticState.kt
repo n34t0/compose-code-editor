@@ -1,21 +1,16 @@
 package com.github.n34t0.compose.codeEditor.diagnostics
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import com.github.n34t0.compose.codeEditor.editor.draw.DrawState
 import com.github.n34t0.compose.codeEditor.editor.draw.LineSegment
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
 import kotlinx.coroutines.CoroutineScope
-import mu.KotlinLogging
-import com.github.n34t0.compose.stubs.diagnostic.DiagnosticStub
-import com.github.n34t0.compose.stubs.diagnostic.SeverityStub
-
-private val logger = KotlinLogging.logger {}
 
 @Stable
-class DiagnosticState(
-    diagnostics: List<DiagnosticStub>,
+internal class DiagnosticState(
+    diagnostics: List<DiagnosticElement>,
     scope: CoroutineScope,
     textState: TextState,
     private val drawState: DrawState
@@ -26,11 +21,7 @@ class DiagnosticState(
     val list = diagnostics.map {
         DiagnosticElementState(
             message = it.message,
-            severity = when (it.severity) {
-                SeverityStub.INFO -> Severity.INFO
-                SeverityStub.WARNING -> Severity.WARNING
-                SeverityStub.ERROR -> Severity.ERROR
-            },
+            severity = it.severity,
             startLine = it.startLine,
             startCharacter = it.startCharacter,
             endLine = it.endLine,

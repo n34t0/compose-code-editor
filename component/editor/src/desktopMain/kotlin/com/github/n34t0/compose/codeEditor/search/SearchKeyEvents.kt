@@ -7,7 +7,7 @@ import com.github.n34t0.compose.codeEditor.keyevent.KeyModifier.CTRL
 import com.github.n34t0.compose.codeEditor.keyevent.KeyModifier.SHIFT
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onEscape(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onEscape(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Escape) {
         action()
         true
@@ -16,7 +16,7 @@ fun KeyEventHandlerImpl.onEscape(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onCtrlEnter(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onCtrlEnter(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Enter, CTRL) {
         action()
         true
@@ -25,7 +25,7 @@ fun KeyEventHandlerImpl.onCtrlEnter(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onF3(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onF3(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.F3) {
         action()
         true
@@ -34,7 +34,7 @@ fun KeyEventHandlerImpl.onF3(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onShiftF3(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onShiftF3(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.F3, SHIFT) {
         action()
         true
@@ -43,7 +43,7 @@ fun KeyEventHandlerImpl.onShiftF3(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Enter) {
         action()
         true
@@ -53,7 +53,7 @@ fun KeyEventHandlerImpl.onEnter(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onShiftEnter(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onShiftEnter(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.Enter, SHIFT) {
         action()
         true
@@ -63,7 +63,7 @@ fun KeyEventHandlerImpl.onShiftEnter(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onUp(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onUp(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.DirectionUp) {
         action()
         true
@@ -72,7 +72,7 @@ fun KeyEventHandlerImpl.onUp(action: () -> Unit): KeyEventHandlerImpl {
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
-fun KeyEventHandlerImpl.onDown(action: () -> Unit): KeyEventHandlerImpl {
+internal fun KeyEventHandlerImpl.onDown(action: () -> Unit): KeyEventHandlerImpl {
     addKeyDownAction(Key.DirectionDown) {
         action()
         true

@@ -18,5 +18,5 @@ package com.github.n34t0.compose.fork.text.selection
 
 import androidx.compose.ui.input.pointer.PointerEvent
 
-val PointerEvent.isShiftPressed: Boolean
+internal actual val PointerEvent.isShiftPressed: Boolean
     get() = mouseEvent?.isShiftDown ?: false

@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.statusbar
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,13 +23,9 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.github.n34t0.compose.codeEditor.LogMarkers
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 @Composable
-fun StatusBar(
+internal fun StatusBar(
     message: String,
     busyState: BusyState
 ) = Box(
@@ -48,8 +44,6 @@ fun StatusBar(
         }
         .padding(vertical = 4.dp)
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition StatusBar" }
-
     Row(
         modifier = Modifier.padding(horizontal = 8.dp).fillMaxSize(),
         verticalAlignment = Alignment.CenterVertically

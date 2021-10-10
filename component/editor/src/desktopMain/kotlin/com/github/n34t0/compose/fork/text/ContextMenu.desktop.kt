@@ -21,7 +21,10 @@ package com.github.n34t0.compose.fork.text
 import androidx.compose.foundation.ContextMenuArea
 import androidx.compose.foundation.ContextMenuItem
 import androidx.compose.foundation.ContextMenuState
+import com.github.n34t0.compose.fork.DesktopPlatform
 import androidx.compose.foundation.ExperimentalFoundationApi
+import com.github.n34t0.compose.fork.text.selection.SelectionManager
+import com.github.n34t0.compose.fork.text.selection.TextFieldSelectionManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -30,13 +33,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalLocalization
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import com.github.n34t0.compose.fork.DesktopPlatform
-import com.github.n34t0.compose.fork.text.selection.SelectionManager
-import com.github.n34t0.compose.fork.text.selection.TextFieldSelectionManager
 import kotlinx.coroutines.flow.collect
 
 @Composable
-fun ContextMenuArea(
+internal actual fun ContextMenuArea(
     manager: TextFieldSelectionManager,
     content: @Composable () -> Unit
 ) {
@@ -48,7 +48,7 @@ fun ContextMenuArea(
 }
 
 @Composable
-fun ContextMenuArea(
+internal actual fun ContextMenuArea(
     manager: SelectionManager,
     content: @Composable () -> Unit
 ) {
@@ -60,7 +60,7 @@ fun ContextMenuArea(
 }
 
 @Composable
-fun OpenMenuAdjuster(state: ContextMenuState, adjustAction: (Offset) -> Unit) {
+internal fun OpenMenuAdjuster(state: ContextMenuState, adjustAction: (Offset) -> Unit) {
     LaunchedEffect(state) {
         snapshotFlow { state.status }.collect { status ->
             if (status is ContextMenuState.Status.Open) {
@@ -71,7 +71,7 @@ fun OpenMenuAdjuster(state: ContextMenuState, adjustAction: (Offset) -> Unit) {
 }
 
 @Composable
-fun TextFieldSelectionManager.contextMenuItems(): () -> List<ContextMenuItem> {
+internal fun TextFieldSelectionManager.contextMenuItems(): () -> List<ContextMenuItem> {
     val platformLocalization = LocalLocalization.current
     return {
         val result = mutableListOf<ContextMenuItem>()
@@ -116,7 +116,7 @@ fun TextFieldSelectionManager.contextMenuItems(): () -> List<ContextMenuItem> {
 }
 
 @Composable
-fun SelectionManager.contextMenuItems(): () -> List<ContextMenuItem> {
+internal fun SelectionManager.contextMenuItems(): () -> List<ContextMenuItem> {
     val localization = LocalLocalization.current
     return {
         listOf(

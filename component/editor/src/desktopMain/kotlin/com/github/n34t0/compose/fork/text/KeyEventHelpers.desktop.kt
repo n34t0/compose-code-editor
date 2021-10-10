@@ -19,6 +19,6 @@ package com.github.n34t0.compose.fork.text
 import androidx.compose.ui.input.key.KeyEvent
 import org.jetbrains.skiko.orderEmojiAndSymbolsPopup
 
-fun KeyEvent.cancelsTextSelection(): Boolean = false
+internal actual fun KeyEvent.cancelsTextSelection(): Boolean = false
 
-fun showCharacterPalette() = orderEmojiAndSymbolsPopup()
+internal actual fun showCharacterPalette() = orderEmojiAndSymbolsPopup()

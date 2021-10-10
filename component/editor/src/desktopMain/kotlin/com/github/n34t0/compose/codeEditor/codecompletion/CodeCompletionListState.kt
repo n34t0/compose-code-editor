@@ -15,7 +15,7 @@ import com.github.n34t0.compose.codeEditor.codecompletion.CodeCompletionListStat
 import com.github.n34t0.compose.codeEditor.codecompletion.filters.Contains
 import com.github.n34t0.compose.codeEditor.codecompletion.filters.Matches
 import com.github.n34t0.compose.codeEditor.codecompletion.filters.StartsWith
-import com.github.n34t0.ipw.CodeCompletionElement
+import com.github.n34t0.platform.CodeCompletionElement
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @Stable
-class CodeCompletionListState {
+internal class CodeCompletionListState {
     companion object {
         // todo add calculation of page size by line height and list height
         private const val MAX_PAGE_SIZE = 8

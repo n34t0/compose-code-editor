@@ -3,7 +3,7 @@ package com.github.n34t0.compose.codeEditor.editor.text
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.dp
 
-object Paddings {
+internal object Paddings {
     val textFieldLeftPadding = 5.dp
     val lineNumbersLeftPadding = 8.dp
     val lineNumbersRightPadding = 8.dp

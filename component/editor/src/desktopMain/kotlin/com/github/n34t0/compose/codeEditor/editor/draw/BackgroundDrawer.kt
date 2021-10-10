@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.PaintingStyle
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 
-class BackgroundDrawer(
+internal class BackgroundDrawer(
     private val backgroundColor: Color? = null,
     private val borderColor: Color? = null,
     private val height: State<Float>,

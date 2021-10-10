@@ -1,5 +1,6 @@
 package com.github.n34t0.compose.codeEditor.diagnostics
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.TooltipPlacement
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -13,9 +14,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
 @Stable
-class DiagnosticTooltipState(
+internal class DiagnosticTooltipState(
     private val scope: CoroutineScope
 ) {
     var isVisible by mutableStateOf(false)

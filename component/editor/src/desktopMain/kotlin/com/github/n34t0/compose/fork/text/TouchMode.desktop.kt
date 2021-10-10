@@ -16,4 +16,4 @@
 
 package com.github.n34t0.compose.fork.text
 
-val isInTouchMode = false
+internal actual val isInTouchMode = false

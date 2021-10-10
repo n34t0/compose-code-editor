@@ -18,6 +18,6 @@
 
 package com.github.n34t0.compose.fork
 
-typealias AtomicReference<V> = java.util.concurrent.atomic.AtomicReference<V>
+internal actual typealias AtomicReference<V> = java.util.concurrent.atomic.AtomicReference<V>
 
-typealias AtomicLong = java.util.concurrent.atomic.AtomicLong
+internal actual typealias AtomicLong = java.util.concurrent.atomic.AtomicLong

@@ -18,14 +18,17 @@ package com.github.n34t0.compose.fork.text
 
 import org.jetbrains.skija.BreakIterator
 
-fun String.findPrecedingBreak(index: Int): Int {
+internal actual fun String.findPrecedingBreak(index: Int): Int {
     val it = BreakIterator.makeCharacterInstance()
     it.setText(this)
     return it.preceding(index)
 }
 
-fun String.findFollowingBreak(index: Int): Int {
+internal actual fun String.findFollowingBreak(index: Int): Int {
     val it = BreakIterator.makeCharacterInstance()
     it.setText(this)
     return it.following(index)
 }
+
+internal actual fun StringBuilder.appendCodePointX(codePoint: Int): StringBuilder =
+    this.appendCodePoint(codePoint)

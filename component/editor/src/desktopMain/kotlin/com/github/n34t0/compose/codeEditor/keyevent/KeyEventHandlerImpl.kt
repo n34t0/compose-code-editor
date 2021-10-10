@@ -10,7 +10,7 @@ import androidx.compose.ui.input.key.isShiftPressed
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
 
-class KeyEventHandlerImpl(
+internal class KeyEventHandlerImpl(
     val name: String = ""
 ) : KeyEventHandler {
     companion object {
@@ -142,7 +142,7 @@ private class KeyEventAction(
     val keyModifiers: Int
 )
 
-object KeyModifier {
+internal object KeyModifier {
     const val NO_MODIFIERS = 0
     const val SHIFT = 1
     const val CTRL = 2

@@ -3,7 +3,7 @@ package com.github.n34t0.compose.codeEditor.editor.text
 import androidx.compose.runtime.Stable
 
 @Stable
-class LineNumbersState {
+internal class LineNumbersState {
 
     private var lineNumbersText = "1\n"
     private var prevLineCount = 1

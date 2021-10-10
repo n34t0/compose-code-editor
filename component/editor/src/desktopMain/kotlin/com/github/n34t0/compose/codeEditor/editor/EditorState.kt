@@ -26,19 +26,14 @@ import com.github.n34t0.compose.codeEditor.statusbar.BusyState
 import com.github.n34t0.compose.fork.DesktopPlatform
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import mu.KotlinLogging
-import com.github.n34t0.compose.stubs.diagnostic.DiagnosticStub
 import kotlin.math.roundToInt
 
-private val logger = KotlinLogging.logger {}
 
 @Stable
-class EditorState(
+internal class EditorState(
     val projectFile: ProjectFile,
-    diagnostics: List<DiagnosticStub>,
     private val scope: CoroutineScope,
-    onGotoOuterDeclaration: (String, String, Int) -> Unit,
-    gotoCallbackSetter: (((Int) -> Unit) -> Unit)? = null
+    onOuterGotoDeclaration: (String, String, Int) -> Unit
 ) {
     val busyState = BusyState()
     val textState = TextState(projectFile.load())
@@ -47,14 +42,14 @@ class EditorState(
     val cursorPosition = OffsetState()
     val ccState = CodeCompletionState(scope, textState::paste)
     val drawState = DrawState(textState)
-    val diagnosticState = DiagnosticState(diagnostics, scope, textState, drawState)
+    lateinit var diagnosticState: DiagnosticState
     val searchState = SearchState(textState, drawState)
     val tooltipState = EditorTooltipState(textState, layoutOffset)
     val gtdState = GtdState(
         scope = scope,
         projectFile = projectFile,
-        localGoto = ::gotoLocalDeclaration,
-        goto = onGotoOuterDeclaration,
+        localGoto = ::localGotoDeclaration,
+        outerGoto = onOuterGotoDeclaration,
         tooltipState = tooltipState,
         busyState = busyState
     )
@@ -84,10 +79,6 @@ class EditorState(
     val cursorPointerIcon by derivedStateOf {
         if (textState.highlightedReferenceRanges.isNotEmpty()) PointerIcon.Hand
         else PointerIcon.Text
-    }
-
-    init {
-        gotoCallbackSetter?.apply { this(this@EditorState::onGoto) }
     }
 
     fun onScroll(offset: Float) {
@@ -152,11 +143,7 @@ class EditorState(
         }
     }
 
-    private fun onGoto(caretOffset: Int) {
-        textState.caretOffset = caretOffset
-    }
-
-    private fun gotoLocalDeclaration(offset: Int) {
+    private fun localGotoDeclaration(offset: Int) {
         textState.caretOffset = offset
     }
 

@@ -23,6 +23,5 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerIcon
 
-@OptIn(ExperimentalComposeUiApi::class)
-fun Modifier.pointerTextIcon() =
+internal actual fun Modifier.pointerTextIcon() =
     this.pointerIcon(PointerIcon.Text)

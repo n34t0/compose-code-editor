@@ -2,7 +2,7 @@ package com.github.n34t0.compose.codeEditor.codecompletion.filters
 
 import com.github.n34t0.compose.codeEditor.codecompletion.CodeCompletionIndexedElement
 
-class Contains : Filter {
+internal class Contains : Filter {
     override fun matches(
         element: CodeCompletionIndexedElement,
         prefix: String,

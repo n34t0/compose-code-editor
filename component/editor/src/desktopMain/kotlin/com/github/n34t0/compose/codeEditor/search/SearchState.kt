@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.search
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -13,12 +13,9 @@ import com.github.n34t0.compose.codeEditor.editor.draw.DrawState
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
 import com.github.n34t0.compose.codeEditor.keyevent.KeyEventHandler
 import com.github.n34t0.compose.codeEditor.keyevent.KeyEventHandlerImpl
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 @Stable
-class SearchState(
+internal class SearchState(
     private val textState: TextState,
     private val drawState: DrawState
 ) {

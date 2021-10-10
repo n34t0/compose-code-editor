@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import com.github.n34t0.compose.codeEditor.editor.text.TextState
 
 @Stable
-class DiagnosticElementState(
+internal class DiagnosticElementState(
     val message: String,
     val severity: Severity,
     val startLine: Int,

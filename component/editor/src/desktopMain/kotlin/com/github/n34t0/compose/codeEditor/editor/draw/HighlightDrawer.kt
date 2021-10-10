@@ -2,7 +2,7 @@ package com.github.n34t0.compose.codeEditor.editor.draw
 
 import androidx.compose.ui.graphics.drawscope.DrawScope
 
-abstract class HighlightDrawer(
+internal abstract class HighlightDrawer(
     private val zIndex: Int
 ) : Comparable<HighlightDrawer> {
 

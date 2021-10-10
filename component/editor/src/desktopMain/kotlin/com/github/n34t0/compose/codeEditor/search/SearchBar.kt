@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.search
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
@@ -29,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.focus.focusRequester
@@ -44,14 +45,10 @@ import androidx.compose.ui.input.pointer.pointerIcon
 import androidx.compose.ui.input.pointer.pointerMoveFilter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.github.n34t0.compose.codeEditor.LogMarkers
 import kotlinx.coroutines.flow.collect
-import mu.KotlinLogging
-
-private val logger = KotlinLogging.logger {}
 
 @Composable
-fun SearchBar(
+internal fun SearchBar(
     searchState: SearchState
 ) {
     if (!searchState.isVisible) return
@@ -67,8 +64,6 @@ fun SearchBar(
     LaunchedEffect(searchState.selectedResultIndexByCaret) {
         searchState.onSelectedResultIndexByCaretChange()
     }
-
-    logger.trace(LogMarkers.recomposition) { "Recomposition SearchBar" }
 
     Surface(
         elevation = 1.dp
@@ -165,18 +160,15 @@ fun SearchBar(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class, kotlinx.coroutines.InternalCoroutinesApi::class,
-    androidx.compose.ui.ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
 @Composable
-private fun SearchBarButton(
+fun SearchBarButton(
     onClick: () -> Unit,
     color: Color = LocalContentColor.current,
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit
 ) {
-    logger.trace(LogMarkers.recomposition) { "Recomposition SearchBarButton" }
-
     var backgroundColor by remember { mutableStateOf(Color.Transparent) }
     val interactionSource = remember { MutableInteractionSource() }
 

@@ -1,6 +1,6 @@
 package com.github.n34t0.compose.codeEditor.editor.tooltip
 
-import AppTheme
+import com.github.n34t0.compose.codeEditor.AppTheme
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -16,7 +16,7 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupPositionProvider
 
 @Composable
-fun Tooltip(
+internal fun Tooltip(
     message: String,
     positionProvider: PopupPositionProvider,
     onDismissRequest: (() -> Unit)? = null

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 
 @Immutable
-class LineSegment {
+internal class LineSegment {
     val xl: Float
     val xr: Float
     val y: Float

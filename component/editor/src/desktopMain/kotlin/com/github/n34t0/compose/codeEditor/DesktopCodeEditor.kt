@@ -8,11 +8,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticElement
-import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticState
 import com.github.n34t0.compose.codeEditor.editor.Editor
 import com.github.n34t0.compose.codeEditor.editor.EditorState
 import com.github.n34t0.compose.codeEditor.search.SearchBar
 import com.github.n34t0.compose.codeEditor.statusbar.StatusBar
+import com.github.n34t0.compose.stubs.PlatformStub
+import com.github.n34t0.compose.stubs.isStub
+import com.github.n34t0.platform.Platform
+import com.github.n34t0.platform.Project
+import com.github.n34t0.platform.impl.IntellijPlatformWrapper
 
 @Composable
 internal actual fun CodeEditorImpl(
@@ -46,3 +50,11 @@ internal actual fun CodeEditorImpl(
         }
     }
 }
+
+actual fun createProjectFile(
+    project: Project,
+    projectDir: String?,
+    absoluteFilePath: String
+): ProjectFile = ProjectFileImpl(project, projectDir, absoluteFilePath)
+
+actual fun createPlatformInstance(): Platform = if (!isStub) IntellijPlatformWrapper() else PlatformStub()

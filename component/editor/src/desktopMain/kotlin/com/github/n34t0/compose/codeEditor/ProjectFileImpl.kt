@@ -7,7 +7,7 @@ import kotlin.io.path.readText
 import kotlin.io.path.writeText
 
 @Stable
-class ProjectFileImpl(
+internal class ProjectFileImpl(
     override val project: Project,
     override val projectDir: String?,
     override val absoluteFilePath: String

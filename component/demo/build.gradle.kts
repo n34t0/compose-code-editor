@@ -36,6 +36,7 @@ compose.desktop {
     application {
         mainClass = "com.github.n34t0.compose.codeEditor.demo.MainKt"
         jvmArgs("-Xmx2048m")
+//        jvmArgs("-Xmx2048m", "-Dplatform.stub=true")
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)

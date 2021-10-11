@@ -11,11 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.github.n34t0.compose.codeEditor.CodeEditor
-import com.github.n34t0.compose.codeEditor.ProjectFileImpl
+import com.github.n34t0.compose.codeEditor.createPlatformInstance
+import com.github.n34t0.compose.codeEditor.createProjectFile
 import com.github.n34t0.compose.codeEditor.diagnostics.DiagnosticElement
 import com.github.n34t0.platform.Platform
 import com.github.n34t0.platform.Project
-import com.github.n34t0.platform.impl.IntellijPlatformWrapper
 import kotlinx.coroutines.delay
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
@@ -54,7 +54,7 @@ private fun clearTempDir() {
 }
 
 class PlatformState {
-    private val platform: Platform = IntellijPlatformWrapper()
+    private val platform: Platform = createPlatformInstance()
     lateinit var project: Project
 
     fun init(projectDir: String) {
@@ -90,7 +90,7 @@ fun main() = application {
     ) {
         if (!loading) {
             val projectFile = remember {
-                ProjectFileImpl(
+                createProjectFile(
                     project = platformState.project,
                     projectDir = projectDirPath.pathString,
                     absoluteFilePath = filePath.pathString

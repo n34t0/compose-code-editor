@@ -42,20 +42,6 @@ repositories {
     google()
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
-
-/*compose.desktop {
-    application {
-        mainClass = "com.github.n34t0.compose.codeEditor/MainKt"
-        jvmArgs("-Xmx2048m")
-//        jvmArgs("-Xmx2048m", "-Dipw.debug=true")
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "sample"
-            packageVersion = "1.0.0"
-        }
-    }
-}*/

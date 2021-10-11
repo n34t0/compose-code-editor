@@ -6,6 +6,8 @@ import com.github.n34t0.platform.Platform
 import com.github.n34t0.platform.Project
 import com.github.n34t0.platform.impl.GTDData
 
+internal val isStub: Boolean = java.lang.Boolean.getBoolean("platform.stub")
+
 internal class PlatformStub : Platform {
 
     override fun init() {}

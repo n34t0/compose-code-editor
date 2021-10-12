@@ -26,6 +26,7 @@ internal fun EditorTextField(
 
     Row {
         LineNumbers(
+            textState = textState,
             textFieldState = textFieldState,
             scrollState = scrollState,
             onWidthChange = onLineNumbersWidthChange

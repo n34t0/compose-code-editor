@@ -62,14 +62,14 @@ internal class DrawState(
         LineSegment(
             startCharacter * textState.charWidth,
             endCharacter * textState.charWidth,
-            line * textState.lineHeight
+            textState.getLineBottom(line - 1)
         )
 
     private fun lineSegment(startCharacter: Int = 0, line: Int): LineSegment =
         LineSegment(
             startCharacter * textState.charWidth,
             textState.getLineRight(line - 1),
-            line * textState.lineHeight
+            textState.getLineBottom(line - 1)
         )
 }
 

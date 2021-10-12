@@ -41,7 +41,11 @@ internal class TextState(
     var textLayoutResult by mutableStateOf<TextLayoutResult?>(null)
 
     private val boundingBox by derivedStateOf {
-        textLayoutResult?.getBoundingBox(0)
+        textLayoutResult?.let { layoutResult ->
+            if (layoutResult.layoutInput.text.length > 0)
+                layoutResult.getBoundingBox(0)
+            else null
+        }
     }
 
     val charWidth by derivedStateOf {
@@ -285,6 +289,18 @@ internal class TextState(
         if (lineIndex >= layoutResult.lineCount)
             layoutResult.getLineRight(layoutResult.lineCount - 1)
         else layoutResult.getLineRight(lineIndex)
+    } ?: 0f
+
+    fun getLineTop(lineIndex: Int): Float = textLayoutResult?.let { layoutResult ->
+        if (lineIndex >= layoutResult.lineCount)
+            layoutResult.getLineTop(layoutResult.lineCount - 1)
+        else layoutResult.getLineTop(lineIndex)
+    } ?: 0f
+
+    fun getLineBottom(lineIndex: Int): Float = textLayoutResult?.let { layoutResult ->
+        if (lineIndex >= layoutResult.lineCount)
+            layoutResult.getLineBottom(layoutResult.lineCount - 1)
+        else layoutResult.getLineBottom(lineIndex)
     } ?: 0f
 
     fun getLineStart(lineIndex: Int): Int = textLayoutResult?.let { layoutResult ->

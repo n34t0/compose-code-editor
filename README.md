@@ -24,6 +24,8 @@ cd component
 ./gradlew :demo:run
 ```
 
+![Demo](screenshots/codeEditor.gif)
+
 ## Features
 
 - Auto-suggestion and code completion: `Ctrl+Space`

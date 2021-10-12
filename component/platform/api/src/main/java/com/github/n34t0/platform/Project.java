@@ -27,7 +27,7 @@ public interface Project {
     /**
      * Calls the code completion for the file at the offset.
      *
-     * @param path - path to a source file.
+     * @param path path to a source file.
      * @param caretOffset - caret position offset
      */
     List<CodeCompletionElement> getCodeCompletion(String path, int caretOffset);
@@ -35,8 +35,8 @@ public interface Project {
     /**
      * Returns the coordinates of the element declaration.
      *
-     * @param path - path to a source file.
-     * @param caretOffset - caret position offset
+     * @param path path to a source file.
+     * @param caretOffset caret position offset
      */
     GotoDeclarationData gotoDeclaration(String path, int caretOffset);
 

@@ -53,7 +53,7 @@ internal actual fun CodeEditorImpl(
 
 actual fun createProjectFile(
     project: Project,
-    projectDir: String?,
+    projectDir: String? = null,
     absoluteFilePath: String
 ): ProjectFile = ProjectFileImpl(project, projectDir, absoluteFilePath)
 

@@ -1,5 +1,11 @@
 package com.github.n34t0.compose.codeEditor.diagnostics
 
+/**
+ * Contains information about the diagnostic message and its location in the code.
+ *
+ * Line numbering begins with 1.
+ * Character numbering begins with 0.
+ */
 data class DiagnosticElement(
     val startLine: Int,
     val startCharacter: Int,

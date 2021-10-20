@@ -34,18 +34,6 @@ publishing {
         create<MavenPublication>("mavenPlatform") {
             artifactId = "platform-api"
             from(components["java"])
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
         }
     }
-}
-
-tasks.publish {
-    dependsOn("jar", "sourcesJar", "publishMavenPlatformPublicationToMavenLocal")
 }

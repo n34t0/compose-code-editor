@@ -120,7 +120,7 @@ tasks.compileJava {
 
 tasks.processResources {
     from(intellijPlatformDir()) {
-        include("build.txt")
+        include("build.txt", "lib/jdkAnnotations.jar")
         into("home")
     }
 }
@@ -228,7 +228,6 @@ tasks.register<Zip>("packageDistribution") {
     }
 }
 
-// todo: add publish jdkAnnotations.jar
 publishing {
     publications {
         create<MavenPublication>("lib") {

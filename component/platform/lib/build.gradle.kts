@@ -10,7 +10,7 @@ rootProject.apply {
     from(rootProject.file("gradle/projectProperties.gradle.kts"))
 }
 
-group = "com.github.n34t0"
+group = "io.github.n34t0"
 version = rootProject.findProperty("platform.version") as String
 
 repositories {

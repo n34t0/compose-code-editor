@@ -7,7 +7,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.github.n34t0.compose"
+group = "io.github.n34t0.compose"
 version = "0.5.1"
 
 repositories {
@@ -25,10 +25,10 @@ dependencies {
         exclude("platform.build")
     }
 
-    runtimeOnly("com.github.n34t0:platform-lib:0.5.1:idea")
-    runtimeOnly("com.github.n34t0:platform-lib:0.5.1:java")
-    runtimeOnly("com.github.n34t0:platform-lib:0.5.1:kotlin")
-    runtimeOnly("com.github.n34t0:platform-lib:0.5.1:properties")
+    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:idea")
+    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:java")
+    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:kotlin")
+    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:properties")
 }
 
 tasks.withType<KotlinCompile>() {

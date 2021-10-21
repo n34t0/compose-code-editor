@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.materialIconsExtended)
-    implementation("com.github.n34t0.compose:code-editor:0.5.1")
+    implementation("io.github.n34t0.compose:code-editor:0.5.1")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
@@ -25,7 +25,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {
 
 compose.desktop {
     application {
-        mainClass = "com.github.n34t0.compose.codeEditor.demo.MainKt"
+        mainClass = "io.github.n34t0.compose.codeEditor.demo.MainKt"
         jvmArgs("-Xmx2048m")
 //        jvmArgs("-Xmx2048m", "-Dplatform.stub=true")
 

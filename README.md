@@ -8,7 +8,8 @@ The code is contained in the `component` folder. There are several modules:
 - `:editor` - Compose Code Editor component code
 - `:platform:api` - API of the platform that implements the IDE functions
 - `:platform:lib` - API implementation based on IntelliJ Platform
-- `:demo` - Demo as a desktop application
+
+The demo application is contained in the `demo` folder.
 
 ## Running demo application
 
@@ -20,8 +21,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 Running application:
 
 ```shell
-cd component
-./gradlew :demo:run
+cd demo
+./gradlew run
 ```
 
 ![Demo](screenshots/codeEditor.gif)

@@ -3,15 +3,13 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     `java-library`
     `maven-publish`
+    signing
     id("com.github.johnrengelman.shadow") version "7.1.0"
 }
 
 rootProject.apply {
     from(rootProject.file("gradle/projectProperties.gradle.kts"))
 }
-
-group = "io.github.n34t0"
-version = rootProject.findProperty("platform.version") as String
 
 repositories {
     buildLocalRepo(project)
@@ -109,13 +107,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
-java {
-    withSourcesJar()
-}
-
 tasks.compileJava {
     options.compilerArgs.add("--add-exports=java.desktop/sun.awt=ALL-UNNAMED")
-    options.compilerArgs.addAll(listOf("-source", "11", "-target", "11"))
 }
 
 tasks.processResources {
@@ -136,6 +129,10 @@ tasks.jar {
     }
 }
 
+tasks.javadoc {
+    exclude("com/intellij/**")
+}
+
 tasks.test {
     useJUnitPlatform()
     systemProperty("ipw.debug", "true")
@@ -150,38 +147,20 @@ tasks.test {
     )
 }
 
-tasks.register<ShadowJar>("ideaJar") {
-    archiveClassifier.set("idea")
-    dependencies {
-        include {
-            it.moduleGroup == "platform.build" && it.moduleName == "ideaIC"
-        }
-    }
-}
+val plugins = listOf(
+    "idea" to "ideaIC",
+    "java" to "java",
+    "kotlin" to "Kotlin",
+    "properties" to "properties"
+)
 
-tasks.register<ShadowJar>("javaJar") {
-    archiveClassifier.set("java")
-    dependencies {
-        include {
-            it.moduleGroup == "platform.build" && it.moduleName == "java"
-        }
-    }
-}
-
-tasks.register<ShadowJar>("propertiesJar") {
-    archiveClassifier.set("properties")
-    dependencies {
-        include {
-            it.moduleGroup == "platform.build" && it.moduleName == "properties"
-        }
-    }
-}
-
-tasks.register<ShadowJar>("kotlinJar") {
-    archiveClassifier.set("kotlin")
-    dependencies {
-        include {
-            it.moduleGroup == "platform.build" && it.moduleName == "Kotlin"
+plugins.forEach { (archiveName, pluginName) ->
+    tasks.register<ShadowJar>("${archiveName}Jar") {
+        archiveClassifier.set(archiveName)
+        dependencies {
+            include {
+                it.moduleGroup == "platform.build" && it.moduleName == pluginName
+            }
         }
     }
 }
@@ -230,15 +209,27 @@ tasks.register<Zip>("packageDistribution") {
 
 publishing {
     publications {
-        create<MavenPublication>("lib") {
+        create<MavenPublication>("mavenPlatformLib") {
             artifactId = "platform-lib"
 
             artifact(tasks["jar"])
             artifact(tasks["sourcesJar"])
-            artifact(tasks["ideaJar"])
-            artifact(tasks["javaJar"])
-            artifact(tasks["kotlinJar"])
-            artifact(tasks["propertiesJar"])
+            artifact(tasks["javadocJar"])
+
+            plugins.forEach { (archiveName, _) ->
+                artifact(tasks["${archiveName}Jar"])
+            }
+
+            pom {
+                name.set("Code Editor Platform Library")
+                description.set("A library that provides code completion " +
+                    "and go-to-definition functions using the IntelliJ platform")
+                addCommonPom()
+            }
         }
     }
+}
+
+signing {
+    sign(publishing.publications["mavenPlatformLib"])
 }

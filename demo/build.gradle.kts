@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.materialIconsExtended)
-    implementation("io.github.n34t0.compose:code-editor:0.5.1")
+    implementation("io.github.n34t0.compose:code-editor:0.1.0")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>() {

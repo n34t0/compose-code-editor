@@ -1,21 +1,7 @@
 plugins {
     `java-library`
     `maven-publish`
-}
-
-rootProject.apply {
-    from(rootProject.file("gradle/projectProperties.gradle.kts"))
-}
-
-group = "io.github.n34t0"
-version = rootProject.findProperty("platform.version") as String
-
-java {
-    withSourcesJar()
-}
-
-tasks.compileJava {
-    options.compilerArgs.addAll(listOf("-source",  "11", "-target", "11"))
+    signing
 }
 
 tasks.jar {
@@ -31,9 +17,21 @@ tasks.jar {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenPlatform") {
+        create<MavenPublication>("mavenPlatformApi") {
             artifactId = "platform-api"
+
             from(components["java"])
+
+            pom {
+                name.set("Code Editor Platform API")
+                description.set("A library that provides an API for using code completion " +
+                    "and go-to-definition functions using the IntelliJ platform")
+                addCommonPom()
+            }
         }
     }
+}
+
+signing {
+    sign(publishing.publications["mavenPlatformApi"])
 }

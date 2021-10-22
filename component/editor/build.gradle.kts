@@ -3,12 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
+    `maven-publish`
+    signing
     id("org.jetbrains.compose") version "1.0.0-alpha4-build331"
-    id("maven-publish")
 }
 
-group = "io.github.n34t0.compose"
-version = "0.5.1"
+group = group as String + ".compose"
+version = getVersion("editor")
+val platformVersion = getVersion("platform")
 
 repositories {
     mavenLocal()
@@ -25,18 +27,15 @@ dependencies {
         exclude("platform.build")
     }
 
-    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:idea")
-    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:java")
-    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:kotlin")
-    runtimeOnly("io.github.n34t0:platform-lib:0.5.1:properties")
+    runtimeOnly("io.github.n34t0:platform-lib:${platformVersion}:idea")
+    runtimeOnly("io.github.n34t0:platform-lib:${platformVersion}:java")
+    runtimeOnly("io.github.n34t0:platform-lib:${platformVersion}:kotlin")
+    runtimeOnly("io.github.n34t0:platform-lib:${platformVersion}:properties")
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = "11"
-}
-
-java {
-    withSourcesJar()
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 tasks.jar {
@@ -52,9 +51,20 @@ tasks.jar {
 
 publishing {
     publications {
-        create<MavenPublication>("codeEditor") {
+        create<MavenPublication>("mavenCodeEditor") {
             artifactId = "code-editor"
+
             from(components["java"])
+
+            pom {
+                name.set("Code Editor compose component")
+                description.set("A code editor compose component")
+                addCommonPom()
+            }
         }
     }
+}
+
+signing {
+    sign(publishing.publications["mavenCodeEditor"])
 }

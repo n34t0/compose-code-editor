@@ -1,0 +1,3 @@
+subprojects {
+    version = getVersion("platform")
+}

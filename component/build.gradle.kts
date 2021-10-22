@@ -1,3 +1,12 @@
+plugins {
+    id("io.codearte.nexus-staging") version "0.30.0"
+}
+
+nexusStaging {
+    serverUrl = "https://s01.oss.sonatype.org/service/local/"
+    packageGroup = "io.github.n34t0"
+}
+
 subprojects {
     group = "io.github.n34t0"
 
@@ -19,8 +28,8 @@ subprojects {
                     val snapshotRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                     url = uri(if (hasProperty("release")) releaseRepoUrl else snapshotRepoUrl)
                     credentials {
-                        username = (findProperty("ossrhUsername") ?: "").toString()
-                        password = (findProperty("ossrhPassword") ?: "").toString()
+                        username = (findProperty("nexusUsername") ?: "").toString()
+                        password = (findProperty("nexusPassword") ?: "").toString()
                     }
                 }
             }

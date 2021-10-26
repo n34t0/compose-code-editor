@@ -40,7 +40,7 @@ jobs:
         if: ${{ github.event.inputs.release == 'yes' }}
         run: |
           cd component
-          ./gradlew closeRepository
+          ./gradlew closeAndReleaseRepository
         env:
           ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.NEXUS_PASSWORD }}

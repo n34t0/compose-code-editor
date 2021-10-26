@@ -15,6 +15,7 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - run: cd component/editor
       - name: Build Editor with Gradle
-        run: ../gradlew build
+        run: |
+          cd component/platform
+          ../gradlew build

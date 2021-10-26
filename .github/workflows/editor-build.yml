@@ -18,4 +18,5 @@ jobs:
       - name: Build Editor with Gradle
         run: |
           cd component/platform
+          chmod +x ../gradlew
           ../gradlew build

@@ -8,7 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: cd component
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -16,6 +15,6 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - run: cd editor
+      - run: cd component/editor
       - name: Build Editor with Gradle
         run: ../gradlew build

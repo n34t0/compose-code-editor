@@ -24,8 +24,8 @@ jobs:
       - name: Set publication type
         if: ${{ github.event.inputs.release == 'yes' }}
         run: |
-          echo "release_parameter=closeRepository -Prelease" >> $GITHUB_ENV
-      - name: Publish Platform with Gradle
+          echo "release_parameter=-Prelease" >> $GITHUB_ENV
+      - name: Publish Editor with Gradle
         env:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
           ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.SIGNING_KEYID }}
@@ -36,3 +36,8 @@ jobs:
           cd component/editor
           chmod +x ../gradlew
           ../gradlew publish ${{ env.release_parameter }}
+      - name: Release
+        if: ${{ github.event.inputs.release == 'yes' }}
+        run: |
+          cd component
+          ./gradlew closeRepository
